@@ -1,7 +1,8 @@
 ---
-- hosts: default
+- hosts: all
   become: yes
   roles:
+    - common
     - cabify
     - consul
     - haproxy

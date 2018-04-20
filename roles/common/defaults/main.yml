@@ -1,0 +1,4 @@
+---
+
+packages_to_install:
+  - docker.io=1.6.2~dfsg1-1ubuntu4~14.04.1

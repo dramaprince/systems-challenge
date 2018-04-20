@@ -1,0 +1,6 @@
+---
+
+- name: Install Docker
+  apt: name={{ item }}
+  with_items: 
+  - "{{ packages_to_install }}"
