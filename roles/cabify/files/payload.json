@@ -1,0 +1,12 @@
+{
+  "ID": "HOSTNAME",
+  "Name": "Cabify",
+  "Address": "127.0.0.1",
+  "Port": 8080,
+  "EnableTagOverride": false,
+  "Check": {
+    "DeregisterCriticalServiceAfter": "60s",
+    "HTTP": "http://127.0.0.1:8181/status",
+    "Interval": "10s"
+  }
+}

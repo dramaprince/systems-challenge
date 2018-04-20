@@ -1,6 +1,7 @@
 ---
-- name: Enable Cabify App service
-  service:
-    name: cabify
-    enabled: yes
+- name: Start Cabify app containers
+  docker_container:
     state: started
+    name: "cabify-{{ item }}"
+    image: "cabify:{{ cabify_app_version }}"
+  with_sequence: count="{{ app_replicas }}"

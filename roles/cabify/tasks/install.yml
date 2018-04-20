@@ -5,17 +5,19 @@
     name: python-pip
     state: present
 
-- name: Install Bottle Web Framework with PIP
+- name: Install Docker python handler
   pip:
-    name: bottle
-    version: "{{ cabify_bottle_version }}"
+    name: docker-py
     state: present
 
-- name: Deploy example Cabify App
+- name: Deploy example Cabify App dockerized
   copy:
     src: .
     dest: "{{ cabify_path }}"
-    owner: root
-    group: root
-  notify:
-    - restart cabify
+    mode: u=rwx,g=rx,o=rx
+
+- name: Build cabify docker image
+  docker_image:
+    path: "{{ cabify_path }}"
+    name: cabify
+    tag: "{{ cabify_app_version }}"

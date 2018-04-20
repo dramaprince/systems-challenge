@@ -1,5 +1,0 @@
-- name: restart cabify
-  service:
-    name: cabify
-    enabled: yes
-    state: restarted
