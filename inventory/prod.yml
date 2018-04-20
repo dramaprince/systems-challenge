@@ -1,0 +1,10 @@
+---
+
+[all:vars]
+env=prod
+
+[default]
+127.0.0.1
+
+[default:vars]
+app_replicas=200

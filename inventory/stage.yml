@@ -1,0 +1,10 @@
+---
+
+[all:vars]
+env=stage
+
+[default]
+127.0.0.1
+
+[default:vars]
+app_replicas=6

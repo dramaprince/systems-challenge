@@ -1,0 +1,15 @@
+---
+
+# This inventory file contains a workaround to make inventoring work for both vagrant and actual production usecases
+
+[all:vars]
+env=vagrant
+
+[default]
+127.0.0.1
+
+[default:vars]
+ansible_port=22
+ansible_user=vagrant 
+ansible_private_key_file=".vagrant/machines/default/virtualbox/private_key"
+app_replicas=5

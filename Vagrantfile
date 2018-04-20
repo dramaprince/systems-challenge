@@ -19,9 +19,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "ansible_local" do |ansible|
     ansible.install = true
     ansible.playbook = "playbook.yml"
-
+    ansible.inventory_path = "inventory/vagrant.yml"
     ansible.extra_vars = {
-      network_private_address: "{{ ansible_eth0.ipv4.address }}"
+      network_private_address: "{{ ansible_eth0.ipv4.address }}",
     }
   end
 end
