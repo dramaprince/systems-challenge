@@ -9,6 +9,11 @@ global
         group haproxy
         daemon
 
+resolvers consul
+   nameserver dns 127.0.0.1:8600
+   resolve_retries 3
+   hold valid 100ms
+
 defaults
         log     global
         mode    http
@@ -24,6 +29,7 @@ defaults
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
+        default-server init-addr none
 
 frontend cabify
   bind :{{ haproxy_frontend_port }}
@@ -33,4 +39,6 @@ frontend cabify
 
 backend cabify
    mode http
-   server cabify-server localhost:8181
+   balance            roundrobin
+   cookie             SERVERID insert indirect nocache
+   server-template app {{ app_replicas }} cabify.service.consul:8181 inter 1s resolvers consul resolve-prefer ipv4 check

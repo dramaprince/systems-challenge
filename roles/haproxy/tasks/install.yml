@@ -16,4 +16,4 @@
 - name: Install HAProxy
   apt:
     name: haproxy
-    state: installed
+    state: present
