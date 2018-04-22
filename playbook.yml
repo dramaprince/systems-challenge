@@ -1,6 +1,7 @@
 ---
-- hosts: all
-  become: yes
+- name: Cabify systems
+  hosts: all
+  become: True
   roles:
     - common
     - consul
