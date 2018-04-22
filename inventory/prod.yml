@@ -3,8 +3,9 @@
 [all:vars]
 env=prod
 
-[default]
-127.0.0.1
+[workers]
+
+[masters]
 
 [default:vars]
 app_replicas=200

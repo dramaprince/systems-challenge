@@ -3,8 +3,9 @@
 [all:vars]
 env=stage
 
-[default]
-127.0.0.1
+[workers]
+
+[masters]
 
 [default:vars]
 app_replicas=6

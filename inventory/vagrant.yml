@@ -1,7 +1,6 @@
 ---
 
 # This inventory file contains a workaround to make inventoring work for both vagrant and actual production usecases
-
 [all:vars]
 env=vagrant
 
