@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+# This process registers the container IP in Consul. Note that the container IP is provided. This means that the address given by Consul will be relative to the node, and won't work in an environment with multiple hosts. The address of the container in the cluste r network should be the one provided.
+
+CONTAINER_IP=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | cut -d: -f2)
+
+consulate --api-host={{ network_private_address }} --api-port=8500 --datacenter cabify register -a $CONTAINER_IP -p 8181 -s $HOSTNAME Cabify httpcheck 10 http://$CONTAINER_IP:8181/status
+
+exec python cabify.py

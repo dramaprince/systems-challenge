@@ -4,4 +4,6 @@
     state: started
     name: "cabify-{{ item }}"
     image: "cabify:{{ cabify_app_version }}"
+    restart_policy: "on-failure"
   with_sequence: count="{{ app_replicas }}"
+  when: image_shasum.changed

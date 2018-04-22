@@ -10,14 +10,22 @@
     name: docker-py
     state: present
 
-- name: Deploy example Cabify App dockerized
+- name: Deploy static files of the dockerized Cabify app
   copy:
     src: .
     dest: "{{ cabify_path }}"
+    mode: u=rw,g=r,o=r
+
+- name: Deploy the Cabify app container entrypoint
+  template:
+    src: entrypoint.sh.j2
+    dest: "{{ cabify_path }}/entrypoint.sh"
     mode: u=rwx,g=rx,o=rx
 
 - name: Build cabify docker image
   docker_image:
     path: "{{ cabify_path }}"
     name: cabify
+    force: yes
     tag: "{{ cabify_app_version }}"
+  register: image_shasum

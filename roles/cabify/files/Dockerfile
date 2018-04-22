@@ -1,13 +1,11 @@
-FROM alpine:3.7
+FROM python:2.7-alpine3.6
 LABEL maintainer "David Gonzalez <estromboliano@gmail.com>"
 
-RUN apk add --no-cache curl python py-pip \
-    && pip install --upgrade pip \
-    && pip install bottle 
+RUN pip install bottle consulate
 
 RUN adduser -u 1000 -D -S cabify
 
-COPY entrypoint.sh cabify.py payload.json /home/cabify/
+COPY entrypoint.sh cabify.py /home/cabify/
 
 USER cabify 
 
