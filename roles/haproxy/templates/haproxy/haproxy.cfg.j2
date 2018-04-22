@@ -10,7 +10,7 @@ global
         daemon
 
 resolvers consul
-   nameserver dns 127.0.0.1:8600
+   nameserver dns {{ network_private_address }}:8600
    resolve_retries 3
    hold valid 100ms
 
@@ -38,7 +38,6 @@ frontend cabify
   default_backend cabify
 
 backend cabify
-   mode http
-   balance            roundrobin
-   cookie             SERVERID insert indirect nocache
+   mode     http
+   balance  roundrobin
    server-template app {{ app_replicas }} cabify.service.consul:8181 inter 1s resolvers consul resolve-prefer ipv4 check
