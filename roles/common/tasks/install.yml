@@ -4,3 +4,10 @@
   apt: name={{ item }}
   with_items: 
   - "{{ packages_to_install }}"
+
+- name: Add ansible user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    append: yes
+    groups: docker
+  become: true
