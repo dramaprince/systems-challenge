@@ -1,10 +1,7 @@
-describe service('cabify') do
-  it { should be_enabled }
-  it { should be_installed }
-  it { should be_running }
-end
+# The container state is checked for, at least, the first replica of the pool.
 
-describe port(8181) do
-  it { should be_listening }
-  its('addresses') { should include '127.0.0.1' }
+describe command('docker inspect -f {{.State}} cabify-1') do
+  its('stdout') { should match /.*Running:true.*/ }
+  its('stderr') { should eq '' }
+  its('exit_status') { should eq 0 }
 end

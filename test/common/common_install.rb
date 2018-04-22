@@ -17,3 +17,9 @@ describe file('/usr/bin/docker') do
   it { should be_file }
   it { should be_executable }
 end
+
+describe command('docker --version') do
+  its('stdout') { should match /Docker version 1.6.2.*\n/ }
+  its('stderr') { should eq '' }
+  its('exit_status') { should eq 0 }
+end
