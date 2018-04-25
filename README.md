@@ -74,7 +74,7 @@ However, there are also cases in which every behaviour is known (for example, in
 
 - Run Consul in HA. This frees us of this point of failure.
 
-- Secure access to Consul. Right now everyone can write to it, so anyone could delete the Cabify service and produce a downtime.
+- Secure access to Consul. Right now everyone can write to it, so anyone could delete the Cabify service and produce a downtime. Both auth and TLS should be enabled. With Hashicorp Vault one could deploy a PKI for service communication in an internal network mesh. Otherwise, even if auth is implemented, anyone could gain access to the credentials. 
 
 - Run HAProxy in HA. The easiest way of doing so is by using a VRRP implementation such as [keepalived](http://www.keepalived.org/). This protocol would allow us to have an active and a passive replica of the load balancer, and in the event of the loadbalancer IP becoming non-responsive (due to issues in the load balancer), would make the passive copy of HAProxy go active.
 
